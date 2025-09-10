@@ -1,0 +1,41 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de Porcentagem Online — % Rápido</title>
+<meta name="description" content="Calcule percentagens: quanto é X% de Y, Y com aumento/desconto de X% e a variação percentual entre dois valores.">
+<link rel="canonical" href="https://tecne27-bit.github.io/porcentagem.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:860px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+input,button{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+a{color:#7dd3fc}
+</style></head><body>
+<div class="wrap">
+<h1>Calculadora de Porcentagem</h1>
+<div class="card">
+  <h3>1) Quanto é X% de Y?</h3>
+  <div class="row"><input id="p1" type="number" placeholder="X%"><input id="v1" type="number" placeholder="Y"></div>
+  <button onclick="calc1()">Calcular</button> <div id="o1" style="margin-top:8px">—</div>
+</div>
+<div class="card">
+  <h3>2) Aumentar/Diminuir Y em X%</h3>
+  <div class="row"><input id="p2" type="number" placeholder="X%"><input id="v2" type="number" placeholder="Y"></div>
+  <button onclick="calc2('+')">Aumentar</button>
+  <button style="background:transparent;color:#e5e7eb;border:1px solid rgba(255,255,255,.18)" onclick="calc2('-')">Diminuir</button>
+  <div id="o2" style="margin-top:8px">—</div>
+</div>
+<div class="card">
+  <h3>3) Variação entre A → B</h3>
+  <div class="row"><input id="a3" type="number" placeholder="A"><input id="b3" type="number" placeholder="B"></div>
+  <button onclick="calc3()">Calcular</button> <div id="o3" style="margin-top:8px">—</div>
+</div>
+<div style="margin-top:12px;color:#94a3b8">Links: <a href="/idade.html">Idade</a> · <a href="/unidades.html">Unidades</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+function calc1(){ const p=+p1.value, v=+v1.value; if(isNaN(p)||isNaN(v)) return alert('Valores inválidos'); o1.textContent=(p/100*v).toFixed(4); }
+function calc2(dir){ const p=+p2.value, v=+v2.value; if(isNaN(p)||isNaN(v)) return alert('Valores inválidos'); o2.textContent=(dir==='+'? v*(1+p/100): v*(1-p/100)).toFixed(4); }
+function calc3(){ const A=+a3.value, B=+b3.value; if(isNaN(A)||isNaN(B)||A===0) return alert('Valores inválidos'); o3.textContent=((B-A)/A*100).toFixed(2)+'%'; }
+</script>
+</body></html>
