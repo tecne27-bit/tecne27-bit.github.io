@@ -1,0 +1,36 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversor de Fuso Horário — UTC, Lisboa, Nova Iorque, Tóquio</title>
+<meta name="description" content="Converta datas/horas para UTC, Europa/Lisbon, America/New_York e Asia/Tokyo diretamente no navegador.">
+<link rel="canonical" href="https://tecne27-bit.github.io/fuso-horario.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:860px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+input,button,select{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+</style></head><body>
+<div class="wrap">
+<h1>Conversor de Fuso Horário</h1>
+<p>Escolhe uma data/hora local e vê a conversão em diferentes fusos comuns.</p>
+<div class="card">
+  <label>Data/hora local</label>
+  <input id="dt" type="datetime-local">
+  <button style="margin-top:10px" onclick="conv()">Converter</button>
+  <div id="out" style="margin-top:12px;white-space:pre-line">—</div>
+</div>
+<div style="margin-top:12px;color:#94a3b8">Links: <a href="/epoch.html">Epoch/Unix</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+function fmt(date,tz){return new Intl.DateTimeFormat('pt-PT',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).format(date)}
+function conv(){
+  const v=dt.value; if(!v) return alert('Escolhe uma data/hora.');
+  const d=new Date(v);
+  out.textContent=
+    `UTC:               ${fmt(d,'UTC')}
+Europa/Lisboa:     ${fmt(d,'Europe/Lisbon')}
+América/Nova Iorque: ${fmt(d,'America/New_York')}
+Ásia/Tóquio:       ${fmt(d,'Asia/Tokyo')}`;
+}
+</script>
+</body></html>
