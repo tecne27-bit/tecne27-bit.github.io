@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TinyTools — QR • Palavras • Datas</title>
-  <meta name="description" content="Ferramentas online gratuitas: gerar QR, contar palavras/caracteres e converter datas/horas." />
+  <title>TinyTools — QR • Palavras • Datas • +Ferramentas</title>
+  <meta name="description" content="Ferramentas online gratuitas: gerar QR, contar palavras/caracteres, converter datas/horas, gerar UUID, converter Base64 e calcular idade." />
   <link rel="canonical" href="https://tecne27-bit.github.io/">
 
   <!-- (Depois de aprovado no AdSense, cola AQUI o script do cliente) -->
@@ -16,6 +16,7 @@
     body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,#0b1220,#0f172a); color:var(--fg); }
     header { padding:28px 16px; text-align:center; }
     h1 { margin:0; font-size:28px; }
+    h2 { margin:0 0 8px 0; }
     .sub { color:var(--muted); margin-top:6px; }
     .wrap { max-width:1000px; margin:24px auto 64px; padding:0 16px; display:grid; gap:16px; }
     .tabs { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
@@ -34,6 +35,12 @@
     a { color:#7dd3fc; text-decoration:none; }
     @media (max-width:760px){ .row{ grid-template-columns:1fr; } }
     .ad { margin:18px 0; text-align:center; }
+
+    /* grelha de links das novas ferramentas */
+    .tools-grid { display:grid; gap:12px; grid-template-columns: repeat(3, 1fr); }
+    .tool { display:block; padding:14px; border-radius:12px; background:#0b1020; border:1px solid rgba(255,255,255,.12); text-align:center; font-weight:600; }
+    .tool:hover { border-color: var(--accent); transform: translateY(-1px); transition: .15s ease; }
+    @media (max-width:760px){ .tools-grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 <body>
@@ -114,6 +121,18 @@
         </div>
       </div>
     </section>
+
+    <!-- Mais Ferramentas -->
+    <section class="card">
+      <h2>Mais Ferramentas</h2>
+      <div class="tools-grid">
+        <a class="tool" href="/uuid.html">Gerador de UUID</a>
+        <a class="tool" href="/base64.html">Conversor Base64 ↔ Texto</a>
+        <a class="tool" href="/idade.html">Calculadora de Idade</a>
+      </div>
+      <div class="muted" style="margin-top:10px;">Tudo gratuito e sem registo.</div>
+    </section>
+
   </main>
 
   <footer class="footer">
