@@ -1,0 +1,24 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversor Binário, Decimal e Hexadecimal</title>
+<meta name="description" content="Converta números entre bases 2, 10 e 16.">
+<link rel="canonical" href="https://tecne27-bit.github.io/binario.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:760px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+input,select,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:10px;grid-template-columns:2fr 1fr 1fr}
+</style></head><body><div class="wrap">
+<h1>Conversor Binário/Decimal/Hex</h1>
+<div class="card">
+  <div class="row">
+    <input id="v" placeholder="Valor">
+    <select id="f"><option value="2">Bin</option><option value="10" selected>Dec</option><option value="16">Hex</option></select>
+    <select id="t"><option value="2">Bin</option><option value="10">Dec</option><option value="16" selected>Hex</option></select>
+  </div>
+  <button style="margin-top:10px" onclick="go()">Converter</button>
+  <div id="o" style="margin-top:8px">—</div>
+</div></div><script>
+function go(){try{const n=parseInt(v.value.trim(),+f.value);if(isNaN(n))throw 0;o.textContent=n.toString(+t.value).toUpperCase();}catch(e){alert('Valor/base inválidos.');}}
+</script></body></html>
