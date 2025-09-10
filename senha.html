@@ -1,0 +1,47 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerador de Senhas Seguras — Online e Grátis</title>
+<meta name="description" content="Crie palavras-passe fortes com letras, números e símbolos. Define o tamanho e copia com um clique.">
+<link rel="canonical" href="https://tecne27-bit.github.io/senha.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:780px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+input[type="number"]{width:120px}
+input,button{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(2,minmax(0,1fr))}
+a{color:#7dd3fc}
+</style></head><body>
+<div class="wrap">
+<h1>Gerador de Senhas Seguras</h1>
+<p>Gera senhas aleatórias com letras, números e símbolos. Nada é enviado para servidores.</p>
+<div class="card">
+  <div class="grid">
+    <label><input type="checkbox" id="low" checked> minúsculas</label>
+    <label><input type="checkbox" id="up" checked> maiúsculas</label>
+    <label><input type="checkbox" id="num" checked> números</label>
+    <label><input type="checkbox" id="sym"> símbolos</label>
+  </div>
+  <div style="margin:10px 0">
+    Tamanho: <input id="len" type="number" min="6" max="64" value="16">
+  </div>
+  <button onclick="gen()">Gerar</button>
+  <button style="margin-left:8px;background:transparent;border:1px solid rgba(255,255,255,.18);color:#e5e7eb" onclick="copy()">Copiar</button>
+  <div id="out" style="margin-top:12px;background:#0b1020;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.12)">—</div>
+</div>
+<div style="margin-top:12px;color:#94a3b8">Links: <a href="/uuid.html">UUID</a> · <a href="/unidades.html">Unidades</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+const sets={low:"abcdefghijklmnopqrstuvwxyz", up:"ABCDEFGHIJKLMNOPQRSTUVWXYZ", num:"0123456789", sym:"!@#$%^&*()-_=+[]{};:,.?/|~"};
+function gen(){
+  const pool=(document.getElementById('low').checked?sets.low:'')+(document.getElementById('up').checked?sets.up:'')+(document.getElementById('num').checked?sets.num:'')+(document.getElementById('sym').checked?sets.sym:'');
+  const n=parseInt(document.getElementById('len').value||'16',10);
+  if(!pool) return alert('Selecione pelo menos um conjunto.');
+  let out=''; const arr=new Uint32Array(n); crypto.getRandomValues(arr);
+  for(let i=0;i<n;i++){ out+=pool[arr[i]%pool.length]; }
+  document.getElementById('out').textContent=out;
+}
+function copy(){ const t=document.getElementById('out').textContent.trim(); if(t&&t!=='—'){ navigator.clipboard.writeText(t); } }
+</script>
+</body></html>
