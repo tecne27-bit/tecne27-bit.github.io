@@ -1,0 +1,19 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de Média Aritmética — Online</title>
+<meta name="description" content="Calcule a média aritmética de números separados por vírgula.">
+<link rel="canonical" href="https://tecne27-bit.github.io/media.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:760px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+textarea,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb;width:100%}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>Média Aritmética</h1>
+<div class="card">
+  <textarea id="t" rows="4" placeholder="Ex.: 3, 5, 7, 10"></textarea>
+  <button onclick="go()">Calcular</button>
+  <div id="o" style="margin-top:8px">—</div>
+</div></div><script>
+function go(){const nums=(t.value.match(/-?\d+(\.\d+)?/g)||[]).map(Number);if(!nums.length)return alert('Insere números.');const m=nums.reduce((a,b)=>a+b,0)/nums.length;o.textContent=`Média: ${m.toFixed(6)} (n=${nums.length})`;}
+</script></body></html>
