@@ -1,0 +1,21 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSV ↔ JSON — Conversor Online</title>
+<meta name="description" content="Converta entre CSV e JSON no navegador. Simples e gratuito.">
+<link rel="canonical" href="https://tecne27-bit.github.io/csv-json.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:980px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+textarea,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb;width:100%}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>CSV ↔ JSON</h1>
+<div class="card">
+  <textarea id="i" rows="8" placeholder="Cole CSV ou JSON..."></textarea>
+  <div><button onclick="toJSON()">CSV → JSON</button> <button style="background:transparent;color:#e5e7eb;border:1px solid #334155" onclick="toCSV()">JSON → CSV</button></div>
+  <textarea id="o" rows="8" readonly placeholder="Resultado..."></textarea>
+</div></div><script>
+function parseCSV(s){const r=s.trim().split(/\r?\n/).map(l=>l.split(','));const h=r.shift();return r.map(x=>Object.fromEntries(h.map((k,i)=>[k.trim(),x[i]?.trim()??''])));}
+function toJSON(){try{o.value=JSON.stringify(parseCSV(i.value),null,2);}catch(e){alert('CSV inválido');}}
+function toCSV(){try{const a=JSON.parse(i.value);const h=[...new Set(a.flatMap(o=>Object.keys(o)))];const rows=a.map(o=>h.map(k=>String(o[k]??'')).join(','));o.value=[h.join(','),...rows].join('\n');}catch(e){alert('JSON inválido');}}
+</script></body></html>
