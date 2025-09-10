@@ -9,44 +9,42 @@
   </url>
 
   <!-- institucionais -->
-  <url>
-    <loc>https://tecne27-bit.github.io/privacy.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
-  <url>
-    <loc>https://tecne27-bit.github.io/terms.html</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
-  </url>
+  <url><loc>https://tecne27-bit.github.io/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://tecne27-bit.github.io/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 
-  <!-- ferramentas iniciais -->
-  <url>
-    <loc>https://tecne27-bit.github.io/uuid.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://tecne27-bit.github.io/base64.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://tecne27-bit.github.io/idade.html</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+  <!-- iniciais -->
+  <url><loc>https://tecne27-bit.github.io/uuid.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tecne27-bit.github.io/base64.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://tecne27-bit.github.io/idade.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 
-  <!-- novas ferramentas -->
-  <url><loc>https://tecne27-bit.github.io/unidades.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/senha.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/porcentagem.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/imc.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/fuso-horario.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/texto-case.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/lorem.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/url.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/json.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://tecne27-bit.github.io/epoch.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- lote 1 (10) -->
+  <url><loc>https://tecne27-bit.github.io/unidades.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/senha.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/porcentagem.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/imc.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/fuso-horario.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/texto-case.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/lorem.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/url.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/json.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/epoch.html</loc></url>
+
+  <!-- lote 2 (15) -->
+  <url><loc>https://tecne27-bit.github.io/temperatura.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/regra3.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/juros.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/media.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/diferenca-datas.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/horas.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/binario.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/hash.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/csv-json.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/cores.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/random.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/remover-duplicados.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/ordenar-lista.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/extrair-emails.html</loc></url>
+  <url><loc>https://tecne27-bit.github.io/jwt-decode.html</loc></url>
 
 </urlset>
+
