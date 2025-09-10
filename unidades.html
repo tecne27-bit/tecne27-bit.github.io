@@ -1,0 +1,38 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversor de Unidades Online — Metro, KM, Milha, Pé</title>
+<meta name="description" content="Converta unidades de comprimento: metros, quilómetros, milhas e pés. Rápido e gratuito.">
+<link rel="canonical" href="https://tecne27-bit.github.io/unidades.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:860px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+input,select,button{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:12px;grid-template-columns:1fr 1fr 1fr}
+a{color:#7dd3fc;text-decoration:none}
+.links{margin-top:18px;color:#94a3b8}
+</style></head><body>
+<div class="wrap">
+<h1>Conversor de Unidades (Comprimento)</h1>
+<p>Converta entre <strong>m</strong>, <strong>km</strong>, <strong>mi</strong> (milhas) e <strong>ft</strong> (pés). Tudo no navegador.</p>
+<div class="card">
+  <div class="row">
+    <input id="val" type="number" step="any" placeholder="Valor">
+    <select id="from"><option>m</option><option>km</option><option>mi</option><option>ft</option></select>
+    <select id="to"><option>m</option><option>km</option><option>mi</option><option>ft</option></select>
+  </div>
+  <div style="margin-top:12px" id="out">—</div>
+  <button style="margin-top:12px" onclick="conv()">Converter</button>
+</div>
+<div class="links">Também pode gostar: <a href="/base64.html">Base64</a> · <a href="/uuid.html">UUID</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+const toM={m:1, km:1000, mi:1609.344, ft:0.3048};
+function conv(){
+  const v=parseFloat(document.getElementById('val').value||''); if(isNaN(v)) return alert('Valor inválido');
+  const f=document.getElementById('from').value, t=document.getElementById('to').value;
+  const res= v*toM[f]/toM[t]; document.getElementById('out').textContent=`${v} ${f} = ${res.toFixed(6)} ${t}`;
+}
+</script>
+</body></html>
