@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerador de Números Aleatórios — Online</title>
+<meta name="description" content="Gere números aleatórios dentro de um intervalo, com opção de lista sem repetição.">
+<link rel="canonical" href="https://tecne27-bit.github.io/random.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:760px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+input,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr}
+textarea{width:100%;min-height:120px;background:#0b1020;color:#e5e7eb;border:1px solid #334155;border-radius:10px;padding:12px;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>Gerador de Números Aleatórios</h1>
+<div class="card">
+  <div class="row"><input id="min" type="number" placeholder="Mín"><input id="max" type="number" placeholder="Máx"><input id="qtd" type="number" placeholder="Qtd (opcional)"></div>
+  <label><input type="checkbox" id="uniq"> sem repetição</label>
+  <button style="margin-top:10px" onclick="go()">Gerar</button>
+  <textarea id="out" readonly></textarea>
+</div></div><script>
+function rand(a,b){const r=new Uint32Array(1);crypto.getRandomValues(r);return a+ (r[0]%(b-a+1));}
+function go(){let a=+min.value,b=+max.value,q=+qtd.value||1;if(isNaN(a)||isNaN(b)||a>b)return alert('Intervalo inválido');const s=new Set(),res=[];while(res.length<q){const x=rand(a,b);if(uniq.checked){if(s.has(x))continue;s.add(x);}res.push(x);}out.value=res.join(', ');}
+</script></body></html>
