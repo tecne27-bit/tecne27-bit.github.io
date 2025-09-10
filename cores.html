@@ -1,0 +1,24 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversor de Cores — HEX, RGB e HSL</title>
+<meta name="description" content="Converta cores entre HEX, RGB e HSL e visualize em tempo real.">
+<link rel="canonical" href="https://tecne27-bit.github.io/cores.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:820px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+input,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb}
+.row{display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr}#box{height:60px;border-radius:10px;margin-top:10px;border:1px solid #334155}
+</style></head><body><div class="wrap">
+<h1>Conversor de Cores</h1>
+<div class="card">
+  <div class="row"><input id="hex" placeholder="#22c55e"><input id="rgb" placeholder="rgb(34,197,94)"><input id="hsl" placeholder="hsl(146,63%,45%)"></div>
+  <div id="box"></div>
+</div></div><script>
+function upd(c){box.style.background=c;}
+hex.oninput=()=>{const h=hex.value.replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return;const r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);rgb.value=`rgb(${r},${g},${b})`;
+const [R,G,B]=[r/255,g/255,b/255];const max=Math.max(R,G,B),min=Math.min(R,G,B);let h1,s,l=(max+min)/2; if(max===min){h1=s=0}else{const d=max-min;s=l>0.5?d/(2-max-min):d/(max+min);switch(max){case R:h1=(G-B)/d+(G<B?6:0);break;case G:h1=(B-R)/d+2;break;default:h1=(R-G)/d+4;}h1/=6}hsl.value=`hsl(${Math.round(h1*360)},${Math.round(s*100)}%,${Math.round(l*100)}%)`;upd('#'+h);};
+rgb.oninput=()=>{const m=rgb.value.match(/(\d+),\s*(\d+),\s*(\d+)/);if(!m)return;const[r,g,b]=m.slice(1,4).map(Number);hex.value='#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');hex.oninput();};
+hsl.oninput=()=>{const m=hsl.value.match(/(\d+),\s*(\d+)%?,\s*(\d+)%?/);if(!m)return;let[h,s,l]=m.slice(1).map(Number);s/=100;l/=100;const c=(1-Math.abs(2*l-1))*s;const x=c*(1-Math.abs((h/60)%2-1));const m0=l-c/2;let[r,g,b]=[0,0,0];
+if(h<60)[r,g,b]=[c,x,0];else if(h<120)[r,g,b]=[x,c,0];else if(h<180)[r,g,b]=[0,c,x];else if(h<240)[r,g,b]=[0,x,c];else if(h<300)[r,g,b]=[x,0,c];else[r,g,b]=[c,0,x];
+[r,g,b]=[r+m0,g+m0,b+m0].map(v=>Math.round(v*255));rgb.value=`rgb(${r},${g},${b})`;hex.value='#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');upd(hex.value);};
+</script></body></html>
