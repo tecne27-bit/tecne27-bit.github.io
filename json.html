@@ -1,0 +1,32 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formatar e Validar JSON — Online</title>
+<meta name="description" content="Cole JSON, valide e formate com indentação. Também pode minificar. Tudo no navegador.">
+<link rel="canonical" href="https://tecne27-bit.github.io/json.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:980px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+textarea{width:100%;min-height:180px;background:#0b1020;color:#e5e7eb;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:12px;font-family:ui-monospace,Consolas,monospace}
+button{padding:10px 16px;border:none;border-radius:8px;background:#22c55e;color:#0a0a0a;font-weight:700;cursor:pointer;margin:4px 6px}
+.bad{color:#fecaca}
+.ok{color:#86efac}
+</style></head><body>
+<div class="wrap">
+<h1>Validador e Formatador JSON</h1>
+<div class="card">
+  <textarea id="i" placeholder='Cole aqui o JSON...'></textarea>
+  <div>
+    <button onclick="fmt()">Formatar</button>
+    <button style="background:transparent;color:#e5e7eb;border:1px solid rgba(255,255,255,.18)" onclick="min()">Minificar</button>
+    <span id="status" style="margin-left:10px">—</span>
+  </div>
+  <textarea id="o" readonly placeholder="Resultado…"></textarea>
+</div>
+<div style="margin-top:12px;color:#94a3b8">Links: <a href="/url.html">URL Encoder</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+function fmt(){ try{ const obj=JSON.parse(i.value); o.value=JSON.stringify(obj,null,2); status.textContent='Válido ✓'; status.className='ok'; }catch(e){ status.textContent='Inválido ✗'; status.className='bad'; } }
+function min(){ try{ const obj=JSON.parse(i.value); o.value=JSON.stringify(obj); status.textContent='Válido ✓'; status.className='ok'; }catch(e){ status.textContent='Inválido ✗'; status.className='bad'; } }
+</script>
+</body></html>
