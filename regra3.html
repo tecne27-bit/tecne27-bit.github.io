@@ -1,0 +1,21 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Regra de 3 — Calculadora Online</title>
+<meta name="description" content="Calcule rapidamente proporções com a regra de 3 simples.">
+<link rel="canonical" href="https://tecne27-bit.github.io/regra3.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:720px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+input,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+</style></head><body><div class="wrap">
+<h1>Regra de 3</h1>
+<div class="card">
+  <div class="row"><input id="a" type="number" placeholder="A"><input id="b" type="number" placeholder="B"></div>
+  <div class="row"><input id="c" type="number" placeholder="C"><input value="X" disabled></div>
+  <button style="margin-top:10px" onclick="go()">Calcular</button>
+  <div id="o" style="margin-top:8px">—</div>
+</div></div><script>
+function go(){const A=+a.value,B=+b.value,C=+c.value;if([A,B,C].some(isNaN)||A===0)return alert('Valores inválidos');o.textContent='X = '+(B*C/A).toFixed(6);}
+</script></body></html>
