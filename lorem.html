@@ -1,0 +1,34 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerador Lorem Ipsum — Texto Fictício</title>
+<meta name="description" content="Gere parágrafos ou frases de Lorem Ipsum para maquetes e design.">
+<link rel="canonical" href="https://tecne27-bit.github.io/lorem.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:860px;margin:0 auto}
+.card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+input,select,button,textarea{padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+textarea{width:100%;min-height:160px}
+</style></head><body>
+<div class="wrap">
+<h1>Gerador Lorem Ipsum</h1>
+<div class="card">
+  <label>Quantidade</label>
+  <input id="n" type="number" min="1" max="20" value="3">
+  <select id="mode"><option value="p">Parágrafos</option><option value="s">Frases</option></select>
+  <button style="margin-top:10px" onclick="go()">Gerar</button>
+  <textarea id="out" readonly style="margin-top:10px"></textarea>
+</div>
+<div style="margin-top:12px;color:#94a3b8">Links: <a href="/texto-case.html">Transformar Texto</a> · <a href="/">TinyTools</a></div>
+</div>
+<script>
+const sample="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod, nunc vitae gravida varius, lacus quam posuere leo, a vestibulum justo elit at ipsum.";
+function go(){
+  const count=+n.value, m=mode.value; let res=[];
+  if(m==='p'){ for(let i=0;i<count;i++) res.push(sample+' '+sample); }
+  else{ for(let i=0;i<count;i++) res.push(sample.replace(/\.$/,'')); }
+  out.value = (m==='p'? res.join('\n\n'): res.join('. ') + '.');
+}
+</script>
+</body></html>
