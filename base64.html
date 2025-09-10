@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Conversor Base64 ↔ Texto</title>
+<style>
+body{font-family:sans-serif;background:#0f172a;color:#e5e7eb;padding:40px;}
+h1{text-align:center;}
+textarea{width:100%;padding:12px;border-radius:8px;background:#111827;color:#e5e7eb;margin:10px 0;}
+button{padding:10px 16px;border:none;border-radius:8px;background:#22c55e;color:#0a0a0a;font-weight:700;cursor:pointer;margin:5px;}
+</style>
+</head>
+<body>
+<h1>Conversor Base64 ↔ Texto</h1>
+<textarea id="input" rows="5" placeholder="Escreve aqui..."></textarea><br>
+<button onclick="toBase64()">Converter para Base64</button>
+<button onclick="fromBase64()">Converter para Texto</button>
+<textarea id="output" rows="5" placeholder="Resultado..." readonly></textarea>
+<script>
+function toBase64(){
+  const txt=document.getElementById('input').value;
+  document.getElementById('output').value=btoa(unescape(encodeURIComponent(txt)));
+}
+function fromBase64(){
+  const txt=document.getElementById('input').value;
+  try{
+    document.getElementById('output').value=decodeURIComponent(escape(atob(txt)));
+  }catch(e){alert('Texto Base64 inválido.');}
+}
+</script>
+</body>
+</html>
