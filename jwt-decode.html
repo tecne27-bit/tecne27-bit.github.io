@@ -1,0 +1,23 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Decodificar JWT — Cabeçalho e Payload</title>
+<meta name="description" content="Veja o header e payload de um token JWT. (Não verifica assinatura).">
+<link rel="canonical" href="https://tecne27-bit.github.io/jwt-decode.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:980px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+textarea,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb;width:100%}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+pre{background:#0b1020;border:1px solid #334155;border-radius:10px;padding:12px;overflow:auto}
+</style></head><body><div class="wrap">
+<h1>Decodificar JWT</h1>
+<p style="color:#94a3b8">Apenas decodifica Base64URL. <strong>Não</strong> valida a assinatura.</p>
+<div class="card">
+  <textarea id="t" rows="5" placeholder="cole aqui o token JWT..."></textarea>
+  <button onclick="go()">Decodificar</button>
+  <h3>Header</h3><pre id="h">—</pre>
+  <h3>Payload</h3><pre id="p">—</pre>
+</div></div><script>
+function b64u(s){s=s.replace(/-/g,'+').replace(/_/g,'/');return decodeURIComponent(escape(atob(s)));}
+function go(){const parts=(t.value||'').split('.');if(parts.length<2)return alert('JWT inválido');try{h.textContent=JSON.stringify(JSON.parse(b64u(parts[0])),null,2);p.textContent=JSON.stringify(JSON.parse(b64u(parts[1])),null,2);}catch(e){alert('Token inválido');}}
+</script></body></html>
