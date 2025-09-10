@@ -1,0 +1,38 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerar Hash — MD5 e SHA-256</title>
+<meta name="description" content="Calcule hashes MD5 ou SHA-256 de qualquer texto diretamente no navegador.">
+<link rel="canonical" href="https://tecne27-bit.github.io/hash.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:860px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+textarea,select,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb;width:100%}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>Gerar Hash (MD5 / SHA-256)</h1>
+<div class="card">
+  <textarea id="t" rows="5" placeholder="Texto..."></textarea>
+  <select id="alg"><option value="SHA-256">SHA-256</option><option value="MD5">MD5</option></select>
+  <button onclick="go()">Calcular</button>
+  <div id="o" style="margin-top:8px;word-break:break-all">—</div>
+</div></div><script>
+async function sha256(s){const b=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+// MD5 (pequena implementação JS)
+function md5(s){function r(x,c){return(x<<c)|(x>>>32-c)}function c(q,a,b,x,s,t){return r(a+((b&q)|(~b&x))+t+s,7)+b}
+function d(q,a,b,x,s,t){return r(a+((b&x)|(q&~x))+t+s,12)+b}function e(q,a,b,x,s,t){return r(a+(b^q^x)+t+s,17)+b}
+function f(q,a,b,x,s,t){return r(a+(q^(b|~x))+t+s,22)+b}function g(x){const k=[];for(let i=0;i<x.length*8;i+=8)k[i>>5]|=(x.charCodeAt(i/8)&255)<<i%32;k[x.length*8>>5]|=128<<x.length*8%32;k[14+(((x.length*8+64>>>9)<<4))]=x.length*8;return k}
+function h(x){let a=1732584193,b=-271733879,c=-1732584194,dv=271733878;for(let i=0;i<x.length;i+=16){let oa=a,ob=b,oc=c,od=dv;a=f(a,b,c,dv,x[i],-680876936);dv=f(dv,a,b,c,x[i+1],-389564586);c=f(c,dv,a,b,x[i+2],606105819);b=f(b,c,dv,a,x[i+3],-1044525330);
+a=f(a,b,c,dv,x[i+4],-176418897);dv=f(dv,a,b,c,x[i+5],1200080426);c=f(c,dv,a,b,x[i+6],-1473231341);b=f(b,c,dv,a,x[i+7],-45705983);
+a=f(a,b,c,dv,x[i+8],1770035416);dv=f(dv,a,b,c,x[i+9],-1958414417);c=f(c,dv,a,b,x[i+10],-42063);b=f(b,c,dv,a,x[i+11],-1990404162);
+a=f(a,b,c,dv,x[i+12],1804603682);dv=f(dv,a,b,c,x[i+13],-40341101);c=f(c,dv,a,b,x[i+14],-1502002290);b=f(b,c,dv,a,x[i+15],1236535329);
+a=e(a,b,c,dv,x[i+1],-165796510);dv=e(dv,a,b,c,x[i+6],-1069501632);c=e(c,dv,a,b,x[i+11],643717713);b=e(b,c,dv,a,x[i],-373897302);
+a=e(a,b,c,dv,x[i+5],-701558691);dv=e(dv,a,b,c,x[i+10],38016083);c=e(c,dv,a,b,x[i+15],-660478335);b=e(b,c,dv,a,x[i+4],-405537848);
+a=e(a,b,c,dv,x[i+9],568446438);dv=e(dv,a,b,c,x[i+14],-1019803690);c=e(c,dv,a,b,x[i+3],-187363961);b=e(b,c,dv,a,x[i+8],1163531501);
+a=d(a,b,c,dv,x[i+5],-1444681467);dv=d(dv,a,b,c,x[i+8],-51403784);c=d(c,dv,a,b,x[i+11],1735328473);b=d(b,c,dv,a,x[i+14],-1926607734);
+a=d(a,b,c,dv,x[i+1],-378558);dv=d(dv,a,b,c,x[i+4],-2022574463);c=d(c,dv,a,b,x[i+7],1839030562);b=d(b,c,dv,a,x[i+10],-35309556);
+a=c(a,b,c,dv,x[i],-1530992060);dv=c(dv,a,b,c,x[i+7],1272893353);c=c(c,dv,a,b,x[i+14],-155497632);b=c(b,c,dv,a,x[i+5],-1094730640);
+a=c(a,b,c,dv,x[i+12],681279174);dv=c(dv,a,b,c,x[i+3],-358537222);c=c(c,dv,a,b,x[i+10],-722521979);b=c(b,c,dv,a,x[i+1],76029189);
+a=(a+oa)|0;b=(b+ob)|0;c=(c+oc)|0;dv=(dv+od)|0;}return [a,b,c,dv].map(n=>('00000000'+(n>>>0).toString(16)).slice(-8)).join('')}
+return h(g(unescape(encodeURIComponent(s))));
+async function go(){const s=t.value||'';o.textContent = (alg.value==='MD5')? md5(s) : await sha256(s);}
+</script></body></html>
