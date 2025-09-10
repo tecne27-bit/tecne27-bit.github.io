@@ -1,32 +1,61 @@
 <!doctype html>
 <html lang="pt">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calculadora de Idade</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de Idade Online — Quantos anos tenho?</title>
+<meta name="description" content="Calcule a sua idade exata em anos, meses e dias. Rápido, gratuito e sem registo.">
+<link rel="canonical" href="https://tecne27-bit.github.io/idade.html">
 <style>
-body{font-family:sans-serif;background:#0f172a;color:#e5e7eb;text-align:center;padding:40px;}
-h1{margin-bottom:20px;}
-input,button{padding:12px;border-radius:8px;border:none;margin:10px;}
-input{background:#111827;color:#e5e7eb;}
-button{background:#22c55e;color:#0a0a0a;font-weight:700;cursor:pointer;}
-#resultado{margin-top:20px;font-size:20px;}
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+  .wrap{max-width:800px;margin:0 auto}
+  h1{margin:0 0 10px}
+  p{color:#94a3b8}
+  .card{background:#111827;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;margin-top:16px}
+  input,button{padding:12px;border-radius:10px;border:none}
+  input{width:100%;background:#0b1020;color:#e5e7eb;border:1px solid rgba(255,255,255,.12)}
+  button{margin-top:10px;background:#22c55e;color:#0a0a0a;font-weight:700;cursor:pointer}
+  #resultado{margin-top:16px;font-size:18px;background:#0b1020;padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,.12)}
+  a{color:#7dd3fc;text-decoration:none}
+  .links{margin-top:20px;color:#94a3b8}
 </style>
 </head>
 <body>
-<h1>Calculadora de Idade</h1>
-<p>Insere a tua data de nascimento:</p>
-<input type="date" id="dob">
-<button onclick="calcular()">Calcular</button>
-<div id="resultado">—</div>
+<div class="wrap">
+  <h1>Calculadora de Idade Online</h1>
+  <p>Insira a sua data de nascimento e obtenha a idade exata. O cálculo acontece no seu navegador e os dados não são guardados.</p>
+
+  <div class="card">
+    <label for="dob">Data de nascimento</label>
+    <input id="dob" type="date">
+    <button onclick="calcular()">Calcular</button>
+    <div id="resultado">—</div>
+  </div>
+
+  <div class="links">
+    Também pode gostar:
+    <a href="/base64.html">Conversor Base64</a> ·
+    <a href="/uuid.html">Gerador UUID</a> ·
+    <a href="/">Página inicial (TinyTools)</a>
+  </div>
+</div>
+
 <script>
 function calcular(){
-  const dob=new Date(document.getElementById('dob').value);
-  if(isNaN(dob)) return alert('Escolhe uma data válida.');
-  const diff=Date.now()-dob.getTime();
-  const ageDate=new Date(diff);
-  const anos=Math.abs(ageDate.getUTCFullYear()-1970);
-  document.getElementById('resultado').textContent=`Tens ${anos} anos`;
+  const v=document.getElementById('dob').value;
+  if(!v){ alert('Escolha uma data válida.'); return; }
+  const dob=new Date(v);
+  const now=new Date();
+  let anos=now.getFullYear()-dob.getFullYear();
+  const m=now.getMonth()-dob.getMonth();
+  if(m<0 || (m===0 && now.getDate()<dob.getDate())) anos--;
+  // meses/dias aproximados (exato requer libs)
+  const diff=now.getTime()-dob.getTime();
+  const dias=Math.floor(diff/86400000);
+  const meses=Math.floor(dias/30.4375);
+  document.getElementById('resultado').textContent=`Idade: ${anos} anos • ~${meses} meses • ${dias} dias`;
 }
 </script>
 </body>
 </html>
+
