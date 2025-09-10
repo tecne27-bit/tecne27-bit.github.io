@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TinyTools — QR • Palavras • Datas</title>
+  <meta name="description" content="Ferramentas online gratuitas: gerar QR, contar palavras/caracteres e converter datas/horas." />
+  <link rel="canonical" href="https://tecne27-bit.github.io/">
+
+  <!-- (Depois de aprovado no AdSense, cola AQUI o script do cliente) -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+  <style>
+    :root { --bg:#0f172a; --card:#111827; --muted:#94a3b8; --fg:#e5e7eb; --accent:#22c55e; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:linear-gradient(180deg,#0b1220,#0f172a); color:var(--fg); }
+    header { padding:28px 16px; text-align:center; }
+    h1 { margin:0; font-size:28px; }
+    .sub { color:var(--muted); margin-top:6px; }
+    .wrap { max-width:1000px; margin:24px auto 64px; padding:0 16px; display:grid; gap:16px; }
+    .tabs { display:flex; gap:8px; flex-wrap:wrap; justify-content:center; }
+    .tab { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:10px 14px; border-radius:12px; cursor:pointer; user-select:none; }
+    .tab.active { background:var(--accent); color:#0a0a0a; font-weight:700; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:18px; }
+    label { display:block; font-size:14px; color:var(--muted); margin:6px 0 6px; }
+    input, textarea, button { width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0b1020; color:var(--fg); }
+    button { cursor:pointer; background:var(--accent); color:#0a0a0a; font-weight:700; border:none; }
+    button.ghost { background:transparent; border:1px solid rgba(255,255,255,.18); color:var(--fg); }
+    .grid { display:grid; gap:12px; grid-template-columns:1fr; }
+    .row { display:grid; gap:12px; grid-template-columns:1fr 1fr; }
+    .result { margin-top:12px; background:#0b1020; padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); }
+    .muted { color:var(--muted); font-size:14px; }
+    .footer { text-align:center; color:var(--muted); padding:28px 16px; }
+    a { color:#7dd3fc; text-decoration:none; }
+    @media (max-width:760px){ .row{ grid-template-columns:1fr; } }
+    .ad { margin:18px 0; text-align:center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TinyTools</h1>
+    <div class="sub">Gera QR Codes • Conta Palavras • Converte Datas — gratuito</div>
+  </header>
+
+  <main class="wrap">
+    <nav class="tabs">
+      <div class="tab active" data-tab="qr">QR Code</div>
+      <div class="tab" data-tab="words">Contador</div>
+      <div class="tab" data-tab="dates">Datas</div>
+    </nav>
+
+    <!-- bloco de anúncios (só ativa depois do AdSense aprovar) -->
+    <!--
+    <ins class="adsbygoogle ad"
+         style="display:block" data-ad-format="auto"
+         data-full-width-responsive="true"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="YYYYYYYYYY"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    -->
+
+    <!-- QR -->
+    <section id="qr" class="card">
+      <h2>Gerador de QR Code</h2>
+      <div class="grid">
+        <label>Texto ou URL</label>
+        <input id="qrText" placeholder="cola aqui um link ou texto...">
+        <div class="row">
+          <div>
+            <label>Tamanho (px)</label>
+            <input id="qrSize" type="number" min="120" max="1024" value="256">
+          </div>
+          <div>
+            <label>Cor</label>
+            <input id="qrColor" type="color" value="#000000">
+          </div>
+        </div>
+        <div class="row">
+          <button id="qrGenerate">Gerar QR</button>
+          <button id="qrDownload" class="ghost" disabled>Descarregar PNG</button>
+        </div>
+        <div id="qrcode" class="result" style="display:flex;justify-content:center;"></div>
+        <div class="muted">Tudo corre no teu navegador. Sem uploads.</div>
+      </div>
+    </section>
+
+    <!-- Contador -->
+    <section id="words" class="card" style="display:none;">
+      <h2>Contador de Palavras/Caracteres</h2>
+      <label>Texto</label>
+      <textarea id="wcInput" rows="8" placeholder="cola ou escreve aqui..."></textarea>
+      <div class="row">
+        <div class="result"><strong>Palavras:</strong> <span id="wcWords">0</span></div>
+        <div class="result"><strong>Caracteres:</strong> <span id="wcChars">0</span></div>
+      </div>
+      <div class="muted">Estimativa de leitura: <span id="wcRead">0s</span>.</div>
+    </section>
+
+    <!-- Datas -->
+    <section id="dates" class="card" style="display:none;">
+      <h2>Conversor de Data/Hora</h2>
+      <div class="grid">
+        <label>Data e hora (local)</label>
+        <input id="dtLocal" type="datetime-local" />
+        <div class="row">
+          <button id="dtNow">Usar agora</button>
+          <button id="dtCopy" class="ghost">Copiar ISO</button>
+        </div>
+        <div class="result">
+          <div><strong>ISO 8601:</strong> <span id="outISO">—</span></div>
+          <div><strong>UTC:</strong> <span id="outUTC">—</span></div>
+          <div><strong>Unix (s):</strong> <span id="outUnix">—</span></div>
+          <div><strong>RFC 2822:</strong> <span id="outRFC">—</span></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="/privacy.html">Privacidade</a> · <a href="/terms.html">Termos</a>
+  </footer>
+
+  <!-- QRCode.js via CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script>
+    // tabs
+    document.querySelectorAll('.tab').forEach(t=>{
+      t.onclick=()=>{
+        document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+        t.classList.add('active');
+        ['qr','words','dates'].forEach(id=>{
+          document.getElementById(id).style.display=(id===t.dataset.tab)?'block':'none';
+        });
+      };
+    });
+
+    /* QR */
+    let qr;
+    function makeQR(text,size,color){
+      const c=document.getElementById('qrcode'); c.innerHTML='';
+      qr=new QRCode(c,{text,width:size,height:size,colorDark:color,colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.M});
+      document.getElementById('qrDownload').disabled=false;
+    }
+    document.getElementById('qrGenerate').onclick=()=>{
+      const text=(document.getElementById('qrText').value||'').trim();
+      if(!text){ alert('Escreve algum texto ou URL.'); return; }
+      const size=Math.max(120,Math.min(1024,+document.getElementById('qrSize').value||256));
+      const color=document.getElementById('qrColor').value||'#000000';
+      makeQR(text,size,color);
+    };
+    document.getElementById('qrDownload').onclick=()=>{
+      const el=document.querySelector('#qrcode canvas, #qrcode img'); if(!el) return;
+      const url=(el.tagName==='CANVAS')?el.toDataURL('image/png'):el.src;
+      const a=document.createElement('a'); a.href=url; a.download='qrcode.png'; a.click();
+    };
+
+    /* Word Counter */
+    const wcI=document.getElementById('wcInput'), wcW=document.getElementById('wcWords'), wcC=document.getElementById('wcChars'), wcR=document.getElementById('wcRead');
+    const upd=()=>{
+      const t=wcI.value||'', chars=t.length, words=(t.trim().match(/\S+/g)||[]).length;
+      wcC.textContent=chars; wcW.textContent=words;
+      const secs=Math.max(1,Math.round((words/200)*60)); wcR.textContent=secs<60?`${secs}s`:`${(secs/60).toFixed(1)}min`;
+    }; wcI.addEventListener('input',upd); upd();
+
+    /* Datas */
+    const dt=document.getElementById('dtLocal'), oISO=document.getElementById('outISO'), oUTC=document.getElementById('outUTC'), oUnix=document.getElementById('outUnix'), oRFC=document.getElementById('outRFC');
+    function updDates(){
+      const v=dt.value; if(!v){ oISO.textContent=oUTC.textContent=oUnix.textContent=oRFC.textContent='—'; return; }
+      const d=new Date(v); oISO.textContent=d.toISOString(); oUTC.textContent=d.toUTCString(); oUnix.textContent=Math.floor(d.getTime()/1000); oRFC.textContent=d.toUTCString();
+    }
+    document.getElementById('dtNow').onclick=()=>{
+      const n=new Date(), pad=n=>String(n).padStart(2,'0');
+      dt.value=`${n.getFullYear()}-${pad(n.getMonth()+1)}-${pad(n.getDate())}T${pad(n.getHours())}:${pad(n.getMinutes())}`;
+      updDates();
+    };
+    document.getElementById('dtCopy').onclick=()=>{ if(oISO.textContent && oISO.textContent!=='—') navigator.clipboard.writeText(oISO.textContent); };
+    dt.addEventListener('input',updDates);
+  </script>
+</body>
+</html>
