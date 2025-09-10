@@ -1,0 +1,19 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Extrair Emails — Ferramenta Online</title>
+<meta name="description" content="Cole um texto e extraia todos os endereços de email encontrados.">
+<link rel="canonical" href="https://tecne27-bit.github.io/extrair-emails.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:900px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+textarea,button{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb;width:100%}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer;margin-top:10px}
+</style></head><body><div class="wrap">
+<h1>Extrair Emails</h1>
+<div class="card">
+  <textarea id="i" rows="8" placeholder="Cole aqui o texto..."></textarea>
+  <button onclick="go()">Extrair</button>
+  <textarea id="o" rows="8" readonly></textarea>
+</div></div><script>
+function go(){const m=(i.value||'').match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}/gi)||[];o.value=[...new Set(m)].join('\n');}
+</script></body></html>
