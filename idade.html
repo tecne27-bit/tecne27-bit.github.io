@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de Idade</title>
+<style>
+body{font-family:sans-serif;background:#0f172a;color:#e5e7eb;text-align:center;padding:40px;}
+h1{margin-bottom:20px;}
+input,button{padding:12px;border-radius:8px;border:none;margin:10px;}
+input{background:#111827;color:#e5e7eb;}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;cursor:pointer;}
+#resultado{margin-top:20px;font-size:20px;}
+</style>
+</head>
+<body>
+<h1>Calculadora de Idade</h1>
+<p>Insere a tua data de nascimento:</p>
+<input type="date" id="dob">
+<button onclick="calcular()">Calcular</button>
+<div id="resultado">—</div>
+<script>
+function calcular(){
+  const dob=new Date(document.getElementById('dob').value);
+  if(isNaN(dob)) return alert('Escolhe uma data válida.');
+  const diff=Date.now()-dob.getTime();
+  const ageDate=new Date(diff);
+  const anos=Math.abs(ageDate.getUTCFullYear()-1970);
+  document.getElementById('resultado').textContent=`Tens ${anos} anos`;
+}
+</script>
+</body>
+</html>
