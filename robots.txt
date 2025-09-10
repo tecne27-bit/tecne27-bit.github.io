@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://tecne27-bit.github.io/sitemap.xml
