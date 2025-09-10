@@ -1,0 +1,25 @@
+<!doctype html><html lang="pt"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Somar/Subtrair Horas — Calculadora Online</title>
+<meta name="description" content="Some ou subtraia horas e minutos (HH:MM).">
+<link rel="canonical" href="https://tecne27-bit.github.io/horas.html">
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#0f172a;color:#e5e7eb;margin:0;padding:40px}
+.wrap{max-width:700px;margin:0 auto}.card{background:#111827;border:1px solid #1f2937;border-radius:16px;padding:18px}
+input,button,select{padding:12px;border-radius:10px;border:1px solid #334155;background:#0b1020;color:#e5e7eb}
+button{background:#22c55e;color:#0a0a0a;font-weight:700;border:none;cursor:pointer}
+.row{display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr}
+</style></head><body><div class="wrap">
+<h1>Somar/Subtrair Horas</h1>
+<div class="card">
+  <div class="row">
+    <input id="h1" placeholder="HH:MM"><select id="op"><option value="+">+</option><option value="-">-</option></select>
+    <input id="h2" placeholder="HH:MM">
+  </div>
+  <button style="margin-top:10px" onclick="go()">Calcular</button>
+  <div id="o" style="margin-top:8px">—</div>
+</div></div><script>
+const toMin=s=>{const m=s.match(/^(\d{1,2}):(\d{2})$/);if(!m)return NaN;return +m[1]*60+ +m[2];}
+const fmt=m=>`${Math.floor(Math.abs(m)/60).toString().padStart(2,'0')}:${(Math.abs(m)%60).toString().padStart(2,'0')}${m<0?' (-)':''}`;
+function go(){const a=toMin(h1.value),b=toMin(h2.value);if(isNaN(a)||isNaN(b))return alert('Formato HH:MM');o.textContent=fmt(op.value==='+'?a+b:a-b);}
+</script></body></html>
